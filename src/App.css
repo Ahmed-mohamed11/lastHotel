@@ -1,0 +1,210 @@
+::-webkit-scrollbar {
+  background: rgb(148, 171, 201);
+  border-left: 1px solid rgb(148, 171, 201);
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-thumb {
+  /* background: rgb(31, 41, 55); */
+  background: #263242;
+  /* border-radius: 25px; */
+}
+::-webkit-scrollbar-button {
+  background: rgb(148, 171, 201);
+  display: none;
+}
+
+::selection {
+  background-color: #000;
+  color: rgb(167, 191, 223);
+}
+
+.slick-prev,
+.slick-next {
+  width: auto !important;
+  height: auto !important;
+  color: #000 !important;
+  z-index: 1;
+}
+.slick-next {
+  margin-right: 30px !important;
+}
+.slick-prev {
+  margin-left: 30px !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 30px !important;
+  color: #000 !important;
+}
+
+/* Style for the label acting as a button */
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+/* Style for the input element (hidden) */
+input.hidden {
+  display: none;
+}
+
+.mainDiv:hover .popDiv {
+  opacity: 1;
+  top: 100%;
+}
+
+.a-span {
+  color: white;
+  background-color: rgba(255, 255, 255, 0.11);
+  padding: 12px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 36px;
+  transition: 0.5s;
+}
+
+.a-span:nth-child(1):hover {
+  border-bottom: var(--whight-color) 5px solid;
+  box-shadow: inset 0px -64px 0px #3c5997;
+}
+
+.a-span:nth-child(2):hover {
+  border-bottom: var(--whight-color) 5px solid;
+  box-shadow: inset 0px -64px 0px #e94475;
+}
+
+.a-span:nth-child(3):hover {
+  border-bottom: var(--whight-color) 5px solid;
+  box-shadow: inset 0px -64px 0px #161616;
+}
+
+.a-span:nth-child(4):hover {
+  border-bottom: var(--whight-color) 5px solid;
+  box-shadow: inset 0px -64px 0px #31c044;
+}
+
+.a-span a {
+  transition: 0.3s linear;
+}
+
+.a-span:hover a {
+  transform: scale(1.05) rotate(5deg) !important;
+  width: 4rem !important;
+  height: 4rem !important;
+}
+
+.dark .css-13cymwt-control,
+.dark .css-t3ipsp-control {
+  background-color: rgb(71, 85, 105) !important;
+  color: white !important;
+}
+body .css-13cymwt-control,
+body .css-t3ipsp-control {
+  transition: 0.2s linear !important;
+  padding: 8px 0 !important;
+  font-weight: 500 !important;
+}
+body .css-t3ipsp-control,
+body .css-t3ipsp-control:hover {
+  border-color: gray !important;
+  box-shadow: 0 0 0 1px #fff !important;
+}
+
+.css-1nmdiq5-menu li {
+  background-color: rgb(71, 85, 105) !important;
+}
+
+.dark .css-1dimb5e-singleValue {
+  color: white !important;
+}
+
+.dark .css-1dimb5e-singleValue:focus {
+  color: rgb(71, 85, 105) !important;
+}
+
+.dark #react-select-2-input {
+  color: rgb(71, 85, 105) !important;
+}
+
+.regLink span {
+  transition: 0.3s linear;
+}
+.regLink:hover span {
+  /* transform: translateX(3px); */
+  margin-left: 3px;
+}
+
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused {
+    border-color: #F5821F !important;
+    border-width: 1.5px !important;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+  .MuiOutlinedInput-notchedOutline {
+    border: none !important;
+}
+.css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root.Mui-focused
+  .css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    top: 0px !important;
+}
+.css-14lo706 {
+  display: none !important;
+}
+
+.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  top: -5px !important;
+  left: 0;
+  margin: 0;
+  padding: 0 !important;
+  pointer-events: none;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px;
+  overflow: hidden;
+  min-width: 0%;
+  border-color: rgba(0, 0, 0, 0.23);
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(5px);
+  }
+}
+
+.shake {
+  animation: shake 0.5s ease-in-out;
+}
+
+@media screen and (max-height: 750px) {
+  .CreateUser {
+    top: 67% !important;
+  }
+}
+
+@media screen and (max-width: 1370px) and (max-height: 650px) {
+}
+
+@media screen and (max-width: 668px) and (max-height: 650px) {
+}
