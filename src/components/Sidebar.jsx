@@ -1,14 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
-  CardsThree,
-  CaretDown,
   House,
+  SketchLogo,
+  UserCircleGear,
   Warning,
+  Users,
+  Kanban,
+  CardsThree,
+  Airplay,
+  CaretDown,
+  ProjectorScreenChart,
 } from "@phosphor-icons/react";
 import { Link, useLocation } from "react-router-dom";
 import LogoWideLight from "../images/logoWide-light.png";
 import LogoWideDark from "../images/logoWide-dark.png";
 import { useI18nContext } from "../context/i18n-context";
+import api from "../ApiUrl";
+import CryptoJS from "crypto-js";
 
 const SidebarItem = ({
   icon,
@@ -21,7 +29,6 @@ const SidebarItem = ({
   toggleSubMenu,
 }) => {
   const location = useLocation();
-
   const isActive =
     location.pathname === link ||
     (subItems && subItems.some((sub) => location.pathname === sub.link));
@@ -52,8 +59,7 @@ const SidebarItem = ({
         </div>
         {subItems && (
           <div
-            className={`transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"
-              }`}
+            className={`transform duration-300 ${isOpen ? "rotate-180" : "rotate-0"}`}
           >
             <CaretDown size={20} />
           </div>
@@ -62,8 +68,7 @@ const SidebarItem = ({
 
       {subItems && (
         <div
-          className={`ml-6 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40" : "max-h-0"
-            }`}
+          className={`ml-6 overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? "max-h-40" : "max-h-0"}`}
         >
           <div className="mt-2 space-y-1">
             {subItems.map((subItem, index) => {
@@ -108,6 +113,9 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, dark }) {
     setOpenMenuIndex(openMenuIndex === index ? null : index);
   };
 
+ 
+ 
+
   const navigation = [
     {
       icon: <House size={25} />,
@@ -115,10 +123,11 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, dark }) {
       link: `${import.meta.env.VITE_PUBLIC_URL}/`,
     },
     {
-      icon: <House size={25} />,
+      icon: <UserCircleGear size={25} />,
       name: "sideBar.rooms",
       link: `${import.meta.env.VITE_PUBLIC_URL}/rooms`,
     },
+    
     {
       icon: <Warning size={25} />,
       name: "sideBar.error",
@@ -141,8 +150,7 @@ export default function Sidebar({ isSidebarOpen, closeSidebar, dark }) {
   return (
     <div className="flex h-screen dark:bg-gray-900 bg-gray-50 border-r border-gray-200 dark:border-gray-800 dark:shadow-xl overflow-y-auto">
       <nav
-        className={`flex flex-col w-full dark:bg-gray-900 bg-gray-50 ${isSidebarOpen ? "block" : "hidden"
-          }`}
+        className={`flex flex-col w-full dark:bg-gray-900 bg-gray-50 ${isSidebarOpen ? "block" : "hidden"}`}
       >
         <div className="flex py-2 pt-4 items-center justify-center h-16 z-20">
           <img

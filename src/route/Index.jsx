@@ -15,7 +15,7 @@ import Rooms from "../pages/rooms/Rooms";
         <Route
           exact
           path={`${import.meta.env.VITE_PUBLIC_URL}/rooms`}
-          element={<Rooms/>}
+          element={<Rooms />}
         />
        
         <Route path={"/*"} element={<Error404Modern />} />

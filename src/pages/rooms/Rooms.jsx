@@ -53,7 +53,7 @@ export default function Rooms({ role }) {
     const handleDeleteRoom = async () => {
         console.log(room.id);
         try {
-            const response = await api.delete(`rooms/${room.id}/`);
+            const response = await api.delete(`rooms/room/${room.id}/`);
 
             console.log("Data", response.data);
             dispatch(fetchRooms());
@@ -74,8 +74,6 @@ export default function Rooms({ role }) {
                 RoomsData={roomsData}
                 handleGetRoom={handleGetRoom}
             />
-
-          
  
 
             {showDelete && (

@@ -9,10 +9,35 @@ import { AdminPages } from "./route/Index";
 import { useI18nContext } from "./context/i18n-context";
 
 import CryptoJS from "crypto-js";
+const secretKey = "s3cr3t$Key@123!";
 
 
+const decryptFromSessionStorage = (key) => {
+  try {
+    const encryptedValue = sessionStorage.getItem(key);
+    console.log("Encrypted Value:", encryptedValue);
 
+    if (encryptedValue) {
+      const decryptedBytes = CryptoJS.AES.decrypt(encryptedValue, secretKey);
+      const decryptedValue = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      const encryptedToken = CryptoJS.AES.encrypt("yourTokenValue", secretKey).toString();
+      sessionStorage.setItem("token", encryptedToken);
+       if (!decryptedValue) {
+        console.error("Decryption failed or returned empty.");
+        return null;
+      }
 
+      console.log("Decrypted Value:", decryptedValue);
+      return decryptedValue;
+    } else {
+      console.warn(`No value found for key: ${key}`);
+      return null;
+    }
+  } catch (error) {
+    console.error("Error during decryption:", error);
+    return null;
+  }
+};
 
 
 function App() {
@@ -27,58 +52,8 @@ function App() {
 
   const { language } = useI18nContext();
 
-
-  const decryptFromSessionStorage = () => {
-    const secretKey = "s3cr3t$Key@123!";
-    const encryptedValue = sessionStorage.getItem("token");
-
-    console.log("Encrypted Value:", encryptedValue); // لطباعة القيمة المشفرة
-
-    if (!encryptedValue) {
-      console.error("No token found in sessionStorage");
-      return null;
-    }
-
-    try {
-      // إزالة بادئة OpenSSL
-      const encryptedWithoutPrefix = encryptedValue.slice(10); // إزالة أول 10 أحرف (U2FsdGVkX1)
-
-      // فك تشفير Base64
-      const decryptedData = CryptoJS.AES.decrypt(CryptoJS.enc.Base64.parse(encryptedWithoutPrefix), secretKey);
-
-      // تحويل النتيجة إلى نص
-      const decryptedValue = decryptedData.toString(CryptoJS.enc.Utf8);
-
-      console.log("Decrypted Value:", decryptedValue); // لطباعة القيمة المفككة
-
-      if (!decryptedValue) {
-        console.error("Decryption successful but resulted in empty string");
-        return null;
-      }
-
-      return decryptedValue;
-    } catch (error) {
-      console.error("Error during decryption:", error);
-      return null;
-    }
-  };
-
-  // دالة للتشفير
-  const encryptAndStore = (value) => {
-    const secretKey = "s3cr3t$Key@123!";
-    const encryptedValue = CryptoJS.AES.encrypt(value, secretKey).toString();
-    sessionStorage.setItem("token", encryptedValue);
-  };
-
-  // مثال للاستخدام
-  encryptAndStore("your_secret_value"); // استخدم قيمة بسيطة
-  const decryptedValue = decryptFromSessionStorage();
-  console.log("Decrypted Value:", decryptedValue); // يجب أن تطبع "your_secret_value"
-
-
-
   const token = decryptFromSessionStorage("token");
-  // console.log(token);
+  console.log(token);
 
   useEffect(() => {
     if (!token) {
@@ -92,7 +67,7 @@ function App() {
     navigate(`${import.meta.env.VITE_PUBLIC_URL}/`);
     localStorage.setItem("currentPath", `${import.meta.env.VITE_PUBLIC_URL}/`);
     // setReloadPage(true);
-  }, [navigate, token]);
+  }, [navigate]);
 
   const handleLogout = useCallback(() => {
     sessionStorage.clear();
@@ -228,12 +203,10 @@ function App() {
                           />
                           <div className="pt-0 px-4">
                             <Routes>
-                              {/* Secured routes */}
                               <Route
                                 path="/*"
                                 element={<AdminPages loading={setLoading} />}
                               />
-
                             </Routes>
                           </div>
                         </>

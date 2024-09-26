@@ -44,13 +44,12 @@ export default function Login(props) {
       sessionStorage.setItem("token", encryptedToken);
 
       console.log(encryptedToken);
-
+      
 
       // Store the id in localStorage
       localStorage.setItem("id", id);
 
-      // End loading state and navigate to the dashboard
-      props.loading(false);
+       props.loading(false);
       props.onLogIn();
       navigate(`${import.meta.env.VITE_PUBLIC_URL}/`);
     } catch (error) {
@@ -59,18 +58,18 @@ export default function Login(props) {
     }
   };
 
-  // useEffect(() => {
-  //   // Check if a token is already present in session storage
-  //   const encryptedToken = sessionStorage.getItem("token");
-  //   if (encryptedToken) {
-  //     const secretKey = "s3cr3t$Key@123!";
-  //     const decryptedToken = CryptoJS.AES.decrypt(encryptedToken, secretKey).toString(CryptoJS.enc.Utf8);
-  //     // If a valid token exists, redirect to the dashboard
-  //     if (decryptedToken) {
-  //       navigate(`${import.meta.env.VITE_PUBLIC_URL}/`);
-  //     }
-  //   }
-  // }, [navigate]);
+  useEffect(() => {
+    // Check if a token is already present in session storage
+    const encryptedToken = sessionStorage.getItem("token");
+    if (encryptedToken) {
+      const secretKey = "s3cr3t$Key@123!";
+      const decryptedToken = CryptoJS.AES.decrypt(encryptedToken, secretKey).toString(CryptoJS.enc.Utf8);
+      // If a valid token exists, redirect to the dashboard
+      if (decryptedToken) {
+        navigate(`${import.meta.env.VITE_PUBLIC_URL}/`);
+      }
+    }
+  }, [navigate]);
 
   return (
     <div className={`min-h-screen flex items-center justify-center lg:justify-between w-full mx-auto gap-x-10`}>
